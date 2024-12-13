@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+import os
 
 app = Flask(__name__)
 
@@ -8,6 +9,15 @@ items = [
     {"id": 2, "name": "Item Two", "description": "This is item two"},
     {"id": 3, "name": "Item Three", "description": "This is item three"},
 ]
+
+@app.route('/', methods=['GET'])
+def get_secret():
+    secret = os.getenv("MY_SECRET")
+    
+    if not secret:
+        return jsonify({"error": "Secret key not found. Ensure the environment variable MY_SECRET_KEY is set."}), 500
+
+    return jsonify({"secret": secret}), 200
 
 # Get all items
 @app.route('/items', methods=['GET'])
