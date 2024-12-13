@@ -1,0 +1,25 @@
+name: Build and Push Docker Image
+
+on:
+  push
+    branches:
+      - main
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and Push Image
+        run: 
+          docker build -t flask-api:latest .
+          docker tag flask-api:latest katja16j/flask-api:latest
+          docker push katja16j/flask-api:latest
