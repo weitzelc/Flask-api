@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: flaskapi
-          image: katja16j/flask-api:latest
+          image: katja16j/flask-api:ba81a65e53c715bd77d20157b93d23b9fab55146
           ports:
           - containerPort: 5000
 ---
