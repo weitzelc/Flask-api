@@ -19,7 +19,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build and Push Image
-        run: 
+        run: | 
           docker build -t flask-api:latest .
           docker tag flask-api:latest katja16j/flask-api:latest
           docker push katja16j/flask-api:latest
