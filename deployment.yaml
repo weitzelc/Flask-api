@@ -16,7 +16,8 @@ spec:
     spec:
       containers:
         - name: flaskapi
-          image: katja16j/flask-api
+          image: katja16j/flask-api:latest
+          imagesPullPolicy: Always
           ports:
           - containerPort: 5000
 ---
